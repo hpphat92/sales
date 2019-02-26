@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import data from './products.json';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +9,15 @@ import data from './products.json';
 })
 export class AppComponent {
   public data = data;
+  public groups = [];
 
   constructor() {
-    console.log(data);
+    _.flatten(_.map(data, x => x.categories));
+    this.groups = _.toPairs(_.reduce(_.uniq(_.flatten(_.map(data, x => x.categories))), (recorder, cat) => {
+      recorder[cat] = _.filter(data, (item) => {
+        return item.categories.includes(cat);
+      });
+      return recorder;
+    }, {}));
   }
 }

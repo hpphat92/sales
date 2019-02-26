@@ -1,16 +1,7 @@
 <accordion>
-  <accordion-group heading="Snack">
+  <accordion-group [heading]="g[0]" *ngFor="let g of groups">
     <div class="product-list">
-      <app-product-item *ngFor="let p of data" [data]="p"></app-product-item>
+      <app-product-item *ngFor="let p of g[1]" [data]="p"></app-product-item>
     </div>
-  </accordion-group>
-  <accordion-group heading="Another group">
-    <p>Some content</p>
-  </accordion-group>
-  <accordion-group heading="Another group">
-    <p>Some content</p>
-  </accordion-group>
-  <accordion-group heading="Another group">
-    <p>Some content</p>
   </accordion-group>
 </accordion>
