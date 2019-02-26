@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:prod": "ng build --base-href 'https://hpphat92.github.io/hpphat92.github.io/' && npm run ngh",
+    "ngh": "ngh --dir dist/saleManagement --no-silent"
   },
   "private": true,
   "dependencies": {
