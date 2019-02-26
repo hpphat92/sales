@@ -114,7 +114,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<accordion>\n  <accordion-group heading=\"Snack\">\n    <div class=\"product-list\">\n      <app-product-item *ngFor=\"let p of data\" [data]=\"p\"></app-product-item>\n    </div>\n  </accordion-group>\n  <accordion-group heading=\"Another group\">\n    <p>Some content</p>\n  </accordion-group>\n  <accordion-group heading=\"Another group\">\n    <p>Some content</p>\n  </accordion-group>\n  <accordion-group heading=\"Another group\">\n    <p>Some content</p>\n  </accordion-group>\n</accordion>\n"
+module.exports = "<accordion>\n  <accordion-group [heading]=\"g[0]\" *ngFor=\"let g of groups\">\n    <div class=\"product-list\">\n      <app-product-item *ngFor=\"let p of g[1]\" [data]=\"p\"></app-product-item>\n    </div>\n  </accordion-group>\n</accordion>\n"
 
 /***/ }),
 
@@ -125,7 +125,7 @@ module.exports = "<accordion>\n  <accordion-group heading=\"Snack\">\n    <div c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ":host /deep/ .product-list {\n  display: grid;\n  grid-template-columns: auto auto auto auto auto auto;\n  grid-row-gap: 10px;\n  grid-column-gap: 10px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9waGF0aG9uZy9Eb2N1bWVudHMvUHJvamVjdHMvc2FsZU1hbmFnZW1lbnQvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSxhQUFhO0VBQ2Isb0RBQW9EO0VBQ3BELGtCQUFrQjtFQUNsQixxQkFBcUIsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IC9kZWVwL3tcbiAgLnByb2R1Y3QtbGlzdCB7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IGF1dG8gYXV0byBhdXRvIGF1dG8gYXV0byBhdXRvO1xuICAgIGdyaWQtcm93LWdhcDogMTBweDtcbiAgICBncmlkLWNvbHVtbi1nYXA6IDEwcHg7XG4gICAgYXBwLXByb2R1Y3QtaXRlbSB7XG4gICAgfVxuICB9XG59XG4iXX0= */"
+module.exports = ":host /deep/ .product-list {\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-row-gap: 10px;\n  grid-column-gap: 10px;\n  min-height: 0;\n  /* NEW */\n  min-width: 0; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9waGF0aG9uZy9Eb2N1bWVudHMvUHJvamVjdHMvc2FsZU1hbmFnZW1lbnQvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFFSSxhQUFhO0VBQ2IscUNBQXFDO0VBQ3JDLGtCQUFrQjtFQUNsQixxQkFBcUI7RUFDckIsYUFBYTtFQUFHLFFBQUE7RUFDaEIsWUFBWSxFQUFBIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgL2RlZXAve1xuICAucHJvZHVjdC1saXN0IHtcbiAgICBkaXNwbGF5OiBncmlkO1xuICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogcmVwZWF0KDYsIDFmcik7XG4gICAgZ3JpZC1yb3ctZ2FwOiAxMHB4O1xuICAgIGdyaWQtY29sdW1uLWdhcDogMTBweDtcbiAgICBtaW4taGVpZ2h0OiAwOyAgLyogTkVXICovXG4gICAgbWluLXdpZHRoOiAwO1xuICAgIGFwcC1wcm9kdWN0LWl0ZW0ge1xuICAgIH1cbiAgfVxufVxuIl19 */"
 
 /***/ }),
 
@@ -143,13 +143,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _products_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products.json */ "./src/app/products.json");
 var _products_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./products.json */ "./src/app/products.json", 1);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
         this.data = _products_json__WEBPACK_IMPORTED_MODULE_2__;
-        console.log(_products_json__WEBPACK_IMPORTED_MODULE_2__);
+        this.groups = [];
+        lodash__WEBPACK_IMPORTED_MODULE_3__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_3__["map"](_products_json__WEBPACK_IMPORTED_MODULE_2__, function (x) { return x.categories; }));
+        this.groups = lodash__WEBPACK_IMPORTED_MODULE_3__["toPairs"](lodash__WEBPACK_IMPORTED_MODULE_3__["reduce"](lodash__WEBPACK_IMPORTED_MODULE_3__["uniq"](lodash__WEBPACK_IMPORTED_MODULE_3__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_3__["map"](_products_json__WEBPACK_IMPORTED_MODULE_2__, function (x) { return x.categories; }))), function (recorder, cat) {
+            recorder[cat] = lodash__WEBPACK_IMPORTED_MODULE_3__["filter"](_products_json__WEBPACK_IMPORTED_MODULE_2__, function (item) {
+                return item.categories.includes(cat);
+            });
+            return recorder;
+        }, {}));
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -222,7 +232,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<img class=\"product-photo\" [src]=\"data?.photo\" alt=\"\">\n<div class=\"product-content\">\n  <div class=\"product-name\">\n    {{data?.name}}\n  </div>\n  <div class=\"product-description\">\n    Bánh kẹo chuyên dùng\n  </div>\n  <div class=\"product-price\">\n    2.000đ\n  </div>\n</div>\n"
+module.exports = "<img class=\"product-photo\" [src]=\"data?.photo\" alt=\"\">\n<div class=\"product-content\">\n  <div class=\"product-name\">\n    {{data?.name}}\n  </div>\n  <div class=\"product-unit\">\n    {{data?.unit}}\n  </div>\n  <div class=\"product-price\">\n    {{data?.price | currency: 'VND':'đ ': '1.0-2'}}\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -279,10 +289,10 @@ var ProductItemComponent = /** @class */ (function () {
 /*!*******************************!*\
   !*** ./src/app/products.json ***!
   \*******************************/
-/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, default */
+/*! exports provided: 0, 1, 2, 3, 4, default */
 /***/ (function(module) {
 
-module.exports = [{"id":1,"name":"Cinnamon Buns Sticky","categories":"Otcom","photo":"http://dummyimage.com/111x184.jpg/cc0000/ffffff"},{"id":2,"name":"Swiss Chard","categories":"Regrant","photo":"http://dummyimage.com/172x150.bmp/dddddd/000000"},{"id":3,"name":"Cheese - Gorgonzola","categories":"Bamity","photo":"http://dummyimage.com/200x215.bmp/ff4444/ffffff"},{"id":4,"name":"Cream Of Tartar","categories":"Voyatouch","photo":"http://dummyimage.com/138x114.png/ff4444/ffffff"},{"id":5,"name":"Turkey - Breast, Double","categories":"Toughjoyfax","photo":"http://dummyimage.com/237x233.jpg/ff4444/ffffff"},{"id":6,"name":"Pepper - Chilli Seeds Mild","categories":"Viva","photo":"http://dummyimage.com/129x211.jpg/5fa2dd/ffffff"},{"id":7,"name":"Jam - Blackberry, 20 Ml Jar","categories":"Mat Lam Tam","photo":"http://dummyimage.com/190x246.jpg/ff4444/ffffff"},{"id":8,"name":"Noodles - Cellophane, Thin","categories":"Konklab","photo":"http://dummyimage.com/249x120.png/ff4444/ffffff"},{"id":9,"name":"Duck - Breast","categories":"Tempsoft","photo":"http://dummyimage.com/196x174.bmp/cc0000/ffffff"},{"id":10,"name":"Stock - Beef, White","categories":"Bamity","photo":"http://dummyimage.com/105x249.bmp/5fa2dd/ffffff"},{"id":11,"name":"Juice - Happy Planet","categories":"Sub-Ex","photo":"http://dummyimage.com/244x142.jpg/cc0000/ffffff"},{"id":12,"name":"Transfer Sheets","categories":"Redhold","photo":"http://dummyimage.com/217x139.jpg/ff4444/ffffff"},{"id":13,"name":"Pepper Squash","categories":"Prodder","photo":"http://dummyimage.com/218x204.bmp/5fa2dd/ffffff"},{"id":14,"name":"Cheese - Blue","categories":"Fintone","photo":"http://dummyimage.com/114x222.jpg/dddddd/000000"},{"id":15,"name":"Beef - Rib Roast, Cap On","categories":"Overhold","photo":"http://dummyimage.com/243x231.png/ff4444/ffffff"},{"id":16,"name":"Alize Gold Passion","categories":"Lotstring","photo":"http://dummyimage.com/225x195.bmp/dddddd/000000"},{"id":17,"name":"Juice - Apple, 341 Ml","categories":"Alpha","photo":"http://dummyimage.com/224x147.jpg/ff4444/ffffff"},{"id":18,"name":"Petit Baguette","categories":"Trippledex","photo":"http://dummyimage.com/150x149.jpg/cc0000/ffffff"},{"id":19,"name":"Extract - Rum","categories":"Viva","photo":"http://dummyimage.com/139x163.jpg/cc0000/ffffff"},{"id":20,"name":"Appetizer - Smoked Salmon / Dill","categories":"Zontrax","photo":"http://dummyimage.com/179x152.bmp/cc0000/ffffff"}];
+module.exports = [{"id":1,"name":"Snack Tôm thái","photo":"http://www.vanthinhthaifood.com.vn/wp-content/uploads/2017/12/Snack-Ruaypuan-20g2-1-570x627.png","unit":"Lốc 12 gói","categories":["Snack","Thái Lan"],"price":35000},{"id":2,"name":"Snack Cọng tôm Thái","photo":"https://bizweb.dktcdn.net/thumb/1024x1024/100/318/446/products/de300ca5f701165f4f10.jpg","unit":"Lốc 12 gói","categories":["Snack","Thái Lan"],"price":38000},{"id":3,"name":"Kẹo chanh muối","photo":"http://cdn.nhanh.vn/cdn/store1/39005/ps/20190108/keo_chanh_muoi_thai_lan_thao_nguyen_shop_3_grande_600x449.jpg","unit":"Bịch 50 viên","categories":["Kẹo","Thái Lan"],"price":15000},{"id":2,"name":"Bánh quy Gery phô mai Nhỏ","photo":"http://www.suadactrimimi.com/image/cache/data/gerychess-700x700.jpg","unit":"Hộp 20 cái","categories":["Bánh Quy"],"price":28000},{"id":2,"name":"Bánh snack que oishi Socola","photo":"https://media-ak.static-adayroi.com/sys_master/h22/h4c/9498844233758.jpg","unit":"Gói 20 cái","categories":["Snack"],"price":28000}];
 
 /***/ }),
 
