@@ -1,0 +1,10 @@
+:host /deep/{
+  .product-list {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-row-gap: 10px;
+    grid-column-gap: 10px;
+    app-product-item {
+    }
+  }
+}
