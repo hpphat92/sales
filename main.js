@@ -153,7 +153,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         this.http = http;
         this.groups = [];
-        this.http.get('https://powerful-waters-72176.herokuapp.com/products')
+        this.http.get('https://product-items-sale.herokuapp.com/products')
             .subscribe(function (data) {
             lodash__WEBPACK_IMPORTED_MODULE_2__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_2__["map"](data, function (x) { return x.categories; }));
             _this.groups = lodash__WEBPACK_IMPORTED_MODULE_2__["toPairs"](lodash__WEBPACK_IMPORTED_MODULE_2__["reduce"](lodash__WEBPACK_IMPORTED_MODULE_2__["uniq"](lodash__WEBPACK_IMPORTED_MODULE_2__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_2__["map"](data, function (x) { return x.categories; }))), function (recorder, cat) {
