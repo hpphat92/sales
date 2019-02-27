@@ -141,25 +141,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _products_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./products.json */ "./src/app/products.json");
-var _products_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./products.json */ "./src/app/products.json", 1);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 
 
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
-        this.data = _products_json__WEBPACK_IMPORTED_MODULE_2__;
+    function AppComponent(http) {
+        var _this = this;
+        this.http = http;
         this.groups = [];
-        lodash__WEBPACK_IMPORTED_MODULE_3__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_3__["map"](_products_json__WEBPACK_IMPORTED_MODULE_2__, function (x) { return x.categories; }));
-        this.groups = lodash__WEBPACK_IMPORTED_MODULE_3__["toPairs"](lodash__WEBPACK_IMPORTED_MODULE_3__["reduce"](lodash__WEBPACK_IMPORTED_MODULE_3__["uniq"](lodash__WEBPACK_IMPORTED_MODULE_3__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_3__["map"](_products_json__WEBPACK_IMPORTED_MODULE_2__, function (x) { return x.categories; }))), function (recorder, cat) {
-            recorder[cat] = lodash__WEBPACK_IMPORTED_MODULE_3__["filter"](_products_json__WEBPACK_IMPORTED_MODULE_2__, function (item) {
-                return item.categories.includes(cat);
-            });
-            return recorder;
-        }, {}));
+        this.http.get('https://powerful-waters-72176.herokuapp.com/products')
+            .subscribe(function (data) {
+            lodash__WEBPACK_IMPORTED_MODULE_2__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_2__["map"](data, function (x) { return x.categories; }));
+            _this.groups = lodash__WEBPACK_IMPORTED_MODULE_2__["toPairs"](lodash__WEBPACK_IMPORTED_MODULE_2__["reduce"](lodash__WEBPACK_IMPORTED_MODULE_2__["uniq"](lodash__WEBPACK_IMPORTED_MODULE_2__["flatten"](lodash__WEBPACK_IMPORTED_MODULE_2__["map"](data, function (x) { return x.categories; }))), function (recorder, cat) {
+                recorder[cat] = lodash__WEBPACK_IMPORTED_MODULE_2__["filter"](data, function (item) {
+                    return item.categories.includes(cat);
+                });
+                return recorder;
+            }, {}));
+        });
     }
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -167,7 +170,7 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.scss */ "./src/app/app.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -193,6 +196,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
 /* harmony import */ var src_app_app_boostrap_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/app-boostrap.module */ "./src/app/app-boostrap.module.ts");
 /* harmony import */ var src_app_product_item_product_item_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/product-item/product-item.component */ "./src/app/product-item/product-item.component.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
 
 
 
@@ -212,7 +217,8 @@ var AppModule = /** @class */ (function () {
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"],
-                src_app_app_boostrap_module__WEBPACK_IMPORTED_MODULE_5__["AppBootstrapModule"]
+                src_app_app_boostrap_module__WEBPACK_IMPORTED_MODULE_5__["AppBootstrapModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClientModule"]
             ],
             providers: [],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -282,17 +288,6 @@ var ProductItemComponent = /** @class */ (function () {
 }());
 
 
-
-/***/ }),
-
-/***/ "./src/app/products.json":
-/*!*******************************!*\
-  !*** ./src/app/products.json ***!
-  \*******************************/
-/*! exports provided: 0, 1, 2, 3, 4, default */
-/***/ (function(module) {
-
-module.exports = [{"id":1,"name":"Snack Tôm thái","photo":"http://www.vanthinhthaifood.com.vn/wp-content/uploads/2017/12/Snack-Ruaypuan-20g2-1-570x627.png","unit":"Lốc 12 gói","categories":["Snack","Thái Lan"],"price":35000},{"id":2,"name":"Snack Cọng tôm Thái","photo":"https://bizweb.dktcdn.net/thumb/1024x1024/100/318/446/products/de300ca5f701165f4f10.jpg","unit":"Lốc 12 gói","categories":["Snack","Thái Lan"],"price":38000},{"id":3,"name":"Kẹo chanh muối","photo":"http://cdn.nhanh.vn/cdn/store1/39005/ps/20190108/keo_chanh_muoi_thai_lan_thao_nguyen_shop_3_grande_600x449.jpg","unit":"Bịch 50 viên","categories":["Kẹo","Thái Lan"],"price":15000},{"id":2,"name":"Bánh quy Gery phô mai Nhỏ","photo":"http://www.suadactrimimi.com/image/cache/data/gerychess-700x700.jpg","unit":"Hộp 20 cái","categories":["Bánh Quy"],"price":28000},{"id":2,"name":"Bánh snack que oishi Socola","photo":"https://media-ak.static-adayroi.com/sys_master/h22/h4c/9498844233758.jpg","unit":"Gói 20 cái","categories":["Snack"],"price":28000}];
 
 /***/ }),
 
