@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:prod": "ng build --base-href 'https://hpphat92.github.io/sales/' && npm run ngh",
+    "build:prod": "ng build",
+    "build:deploy:ghp": "ng build --base-href 'https://hpphat92.github.io/sales/' && npm run ngh",
     "ngh": "ngh --dir dist/saleManagement --no-silent",
     "postinstall": "npm run build:prod"
   },
