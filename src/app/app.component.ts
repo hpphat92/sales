@@ -10,17 +10,7 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent {
   public groups = [];
 
-  constructor(private  http: HttpClient) {
-    this.http.get('https://product-items-sale.herokuapp.com/products')
-      .subscribe((data: any) => {
-        _.flatten(_.map(data, x => x.categories));
-        this.groups = _.toPairs(_.reduce(_.uniq(_.flatten(_.map(data, x => x.categories))), (recorder, cat) => {
-          recorder[cat] = _.filter(data, (item) => {
-            return item.categories.includes(cat);
-          });
-          return recorder;
-        }, {}));
-      });
+  constructor() {
 
   }
 }
